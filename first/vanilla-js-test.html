@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="border: dashed darkred; text-align: center">
+    Text file content:
+    <div style="font-style: italic; font-size: xx-large; color: rebeccapurple; border: double green; text-align: center"><span id="fileContentSpan"></span></div>
+</div>
+<script>
+    var AJAX_APP = {
+        //Attributes
+        fileName: "file.txt",
+
+        //HTML objects
+        fileContentSpan: null,
+
+        //init
+        init: function () {
+            var setHTMLObjects = function () {
+                AJAX_APP.fileContentSpan = document.getElementById("fileContentSpan");
+//                alert("AY, CARAMBA!");
+            }();
+
+            setInterval(function () {
+                AJAX_APP.doAjaxGET();
+            }, 4000);
+
+        },//end init
+
+        doAjaxGET: function () {
+            var xhr = null;
+
+            if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest(); //Both for XML and JSON
+            }
+
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === 4){
+                    AJAX_APP.fileContentSpan.innerHTML = xhr.responseText;
+                }
+            }
+
+            xhr.open("GET", AJAX_APP.fileName, true); //3rd parameter - is the call async?
+            xhr.send();
+        }
+
+    };//end AJAX_APP
+    AJAX_APP.init();
+</script>
+</body>
+</html>
