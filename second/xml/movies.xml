@@ -8,12 +8,12 @@
         <description>Batman og Superman slåss for harde livet!</description>
         <imageSrc>batman-vs-superman.jpg</imageSrc>
     </movie>
-    <movie>
-        <id>1001</id>
-        <title>Dark Knight</title>
-        <description>Batman is very dangerous guy, you know!</description>
-        <imageSrc>dark_knight_banner.jpg</imageSrc>
-    </movie>
+    <!--<movie>-->
+        <!--<id>1001</id>-->
+        <!--<title>Dark Knight</title>-->
+        <!--<description>Batman is very dangerous guy, you know!</description>-->
+        <!--<imageSrc>dark_knight_banner.jpg</imageSrc>-->
+    <!--</movie>-->
     <movie>
         <id>1002</id>
         <title>Star Trek</title>

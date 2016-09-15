@@ -23,6 +23,7 @@ $("document").ready(function () {
 
         var setEvents = function () {
             $showAllBtn.on("click", showAll);
+            $showSearchByTitleBtn.on("click", showSearchByTitle);
         }();
 
         var initPage = function () {
@@ -30,27 +31,61 @@ $("document").ready(function () {
         }();
     }();
 
+    function showSearchByTitle() {
+        cleanUp();
+
+        $(moviesXMLObject)
+            .find("movie")
+            .each(function () {
+                var title = $("title", this).text();
+
+                var searchTerm = $titleSearchText.val();
+
+                var foundMatch = title.toLowerCase().indexOf(searchTerm);
+
+                if (foundMatch !== -1) {
+                    var description = $("description", this).text();
+                    var imageSrc = $("imageSrc", this).text();
+
+                    var $newTitle = $("<h3>").html(title);
+                    var $newDescription = $("<h3>").html(description);
+                    var $newImage = $("<img>").attr(
+                        {
+                            src: "images/" + imageSrc,
+                            alt: title
+                        }
+                    ).addClass("img-responsive");
+
+                    var $newArticle = $("<article>").addClass("col-md-4").append($newTitle, $newImage);
+
+                    $mainContent.append($newArticle);
+                } // end if check match
+            });
+    }
+
     function showAll() {
-       $(moviesXMLObject)
-           .find("movie")
-           .each(function () {
-              var title = $("title", this).text();
-               var description = $("description", this).text();
-               var imageSrc = $("imageSrc", this).text();
+        cleanUp();
 
-               var $newTitle = $("<h3>").html(title);
-               var $newDescription = $("<h3>").html(description);
-               var $newImage = $("<img>").attr(
-                   {
-                       src: "images/" + imageSrc,
-                       alt: title
-                   }
-               ).addClass("img-responsive");
+        $(moviesXMLObject)
+            .find("movie")
+            .each(function () {
+                var title = $("title", this).text();
+                var description = $("description", this).text();
+                var imageSrc = $("imageSrc", this).text();
 
-               var $newArticle = $("<article>").addClass("col-md-3").append($newTitle, $newImage);
+                var $newTitle = $("<h3>").html(title);
+                var $newDescription = $("<h3>").html(description);
+                var $newImage = $("<img>").attr(
+                    {
+                        src: "images/" + imageSrc,
+                        alt: title
+                    }
+                ).addClass("img-responsive");
 
-               $mainContent.append($newArticle);
-           });
+                var $newArticle = $("<article>").addClass("col-md-4").append($newTitle, $newImage);
+
+                $mainContent.append($newArticle);
+            });
     }
 
     function getMoviesXML() {
@@ -61,13 +96,15 @@ $("document").ready(function () {
                 url: "xml/movies.xml",
                 dataType: "xml",
                 async: "true",
-                
-                
+
+
                 beforeSend: function () {
                     console.log("Are going to send");
+                    $mainContent.append("<div class='col-md-12'><p class='alert alert-warning'>XML file is downloading...</p></div>")
                 },
                 success: function (xmlResult) {
                     moviesXMLObject = xmlResult;
+                    $(".alert").delay(1000).fadeOut(3000);
                 },
                 error: function (xhr, status, errorMsg) {
                     console.log(xhr + " " + status + " " + errorMsg)
@@ -78,6 +115,10 @@ $("document").ready(function () {
             }
         );
 
+    }
+
+    function cleanUp() {
+        $mainContent.html("");
     }
 
 });
