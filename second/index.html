@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <title>FAVOMOVO</title>
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <header class="page-header">
+        <h1>FavMovies</h1>
+    </header>
+
+    <section id="menuSection">
+
+        <div class="input-group">
+
+            <input id="titleSearchText" class="form-control" type="text" placeholder="Search title">
+
+            <div class="input-group-btn">
+                <input id="showSearchByTitleBtn" class="btn btn-default" type="button" value="Search">
+                <input id="showAllBtn" class="btn btn-success" type="button" value="Show all">
+            </div>
+
+        </div>
+
+    </section>
+
+    <main id="mainContent"></main>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="scripts/movies-ajax.js"></script>
+
+</body>
+</html>
