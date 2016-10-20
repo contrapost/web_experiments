@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="trollApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular test 4</title>
+    <script src="react-angular-bootstrap-local/js/angular.min.js"></script>
+</head>
+<body>
+
+<section ng-controller="TrollController as trollCtrl">
+
+    <input type="button" value="Show/hide" ng-click="trollCtrl.changeVisibility()">
+
+    <article ng-repeat="troll in trollCtrl.trollfaces" ng-show="trollCtrl.shouldShow">
+    <h3>{{troll.model}}</h3>
+        <p>{{troll.description + " price: " + troll.price}}</p>
+        <img ng-src="{{troll.imgSrc}}" alt="some text">
+    </article>
+
+</section>
+
+<script>
+    var trollApp = angular.module("trollApp", []);
+    
+    trollApp.controller("TrollController", function () {
+
+        this.shouldShow = false;
+
+        this.changeVisibility = function () {
+            this.shouldShow = !this.shouldShow;
+        };
+
+        this.trollfaces = [
+            {
+                model: "Face 1",
+                description: "Panda wtf",
+                price: 3999,
+                imgSrc: "img/0ZkLUEMR2G0.jpg"
+            },
+            {
+                model: "Panda",
+                description: "Panda wtf",
+                price: 3999,
+                imgSrc: "img/maxresdefault.jpg"
+            },
+            {
+                model: "Face 2",
+                description: "Panda wtf",
+                price: 3999,
+                imgSrc: "img/trollface.jpg"
+            }
+        ]
+    });
+</script>
+
+</body>
+</html>
